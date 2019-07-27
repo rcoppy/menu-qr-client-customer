@@ -21,16 +21,22 @@ export default {
   methods: {
     login() {
       if (this.user.username != "" && this.user.password != "") {
-        this.$http
+        this.$store.dispatch('login', { email, password })
+       .then(() => this.$router.push('/'))
+       .catch(err => console.log(err))
+        
+        /*this.$http
           .post("http://localhost:3000/users/sign_in", { user: this.user })
           .then(function(response) {
             console.log(response);
+            if (response.status == 200) {
+              this.$emit("authenticated", true);
+              this.$router.replace({ name: "secure" });
+            }
           })
           .catch(function(error) {
             console.log(error);
-          });
-        //this.$emit("authenticated", true);
-        //this.$router.replace({ name: "secure" });
+          });*/
       } else {
         // console.log("A username and password must be present");
       }
