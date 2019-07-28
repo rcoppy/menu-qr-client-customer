@@ -20,11 +20,12 @@ export default {
   },
   methods: {
     login() {
-      if (this.user.username != "" && this.user.password != "") {
-        this.$store.dispatch('login', { email, password })
-       .then(() => this.$router.push('/'))
-       .catch(err => console.log(err))
-        
+      if (this.user.email != "" && this.user.password != "") {
+        this.$store
+          .dispatch("login", { user })
+          .then(() => this.$router.push("/"))
+          .catch(err => console.log(err));
+
         /*this.$http
           .post("http://localhost:3000/users/sign_in", { user: this.user })
           .then(function(response) {
