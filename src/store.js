@@ -8,7 +8,8 @@ export default new Vuex.Store({
   state: {
     status: '',
     token: localStorage.getItem('token') || '',
-    user: {}
+    user: {},
+    api_url: 'https://menu-qr-api.herokuapp.com/'
   },
   mutations: {
     auth_request(state) {
@@ -31,7 +32,7 @@ export default new Vuex.Store({
     login({ commit }, user) {
       return new Promise((resolve, reject) => {
         commit('auth_request')
-        axios({ url: 'http://localhost:3000/users/sign_in', data: user, method: 'POST' })
+        axios({ url: this.state.api_url + 'users/sign_in', data: user, method: 'POST' })
           .then(resp => {
             const token = resp.data.token
             const user = resp.data.user
@@ -51,7 +52,7 @@ export default new Vuex.Store({
     register({ commit }, user) {
       return new Promise((resolve, reject) => {
         commit('auth_request')
-        axios({ url: 'http://localhost:3000/users', data: user, method: 'POST' })
+        axios({ url: this.state.api_url + 'users', data: user, method: 'POST' })
           .then(resp => {
             const token = resp.data.token
             const user = resp.data.user
@@ -69,7 +70,7 @@ export default new Vuex.Store({
     },
 
     logout({ commit }) {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve, _reject) => {
         commit('logout')
         localStorage.removeItem('token')
         delete axios.defaults.headers.common['Authorization']
