@@ -6,6 +6,7 @@ import About from './views/About.vue'
 import Login from './components/Login.vue'
 import Secure from './views/Secure.vue'
 import Register from './components/Register.vue'
+import RestaurantsIndex from './views/RestaurantsIndex'
 
 Vue.use(Router)
 
@@ -39,6 +40,57 @@ let router = new Router({
       path: '/about',
       name: 'about',
       component: About
+    },
+    {
+      path: '/restaurants',
+      name: 'restaurants_index',
+      component: RestaurantsIndex
+    },
+    {
+      path: '/restaurants/:id',
+      name: 'restaurant_show',
+      component: RestaurantShow
+    },
+    {
+      path: '/restaurants/:id/tables',
+      name: 'tables_index',
+      component: TablesIndex
+    },
+    {
+      path: '/init/:restaurant_id/:table_id',
+      name: 'init_session',
+      component: RestaurantsIndex
+    },
+    {
+      path: '/cart',
+      name: 'cart_show',
+      component: CartShow
+    },
+    {
+      path: '/payment',
+      name: 'payment',
+      component: Payment
+    },
+    {
+      path: '/confirmation',
+      name: 'confirmation',
+      component: Confirmation
+    },
+    {
+      path: '/orders',
+      name: 'orders_index',
+      component: OrdersIndex,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/orders/:id',
+      name: 'order_show',
+      component: OrderShow,
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 })
