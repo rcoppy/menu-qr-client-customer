@@ -35,7 +35,7 @@ export default {
     }
   },
   computed: {
-    restaurant {}  
+    restaurant: function() {},
     isItemsBlank: function() {
       return this.items_loaded_status === "success"
         ? this.items.length < 1

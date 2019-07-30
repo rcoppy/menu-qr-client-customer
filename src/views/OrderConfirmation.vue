@@ -70,7 +70,7 @@
 import {
   VContainer,
   VFooter,
-  VButton,
+  VBtn,
   VTextarea,
   VForm,
   VGrid
@@ -81,7 +81,7 @@ export default {
   components: {
     VContainer,
     VFooter,
-    VButton,
+    VBtn,
     VTextarea,
     VForm,
     VGrid

@@ -6,7 +6,15 @@ import About from './views/About.vue'
 import Login from './components/Login.vue'
 import Secure from './views/Secure.vue'
 import Register from './components/Register.vue'
-import { CartShow, OrderConfirmation, OrderShow, OrdersIndex, OrderSummary, Payment, RestaurantShow, RestaurantsIndex, TablesIndex } from "@/components";
+import CartShow from "./views/CartShow.vue";
+import OrderConfirmation from "./views/OrderConfirmation.vue";
+import OrderShow from "./views/OrderShow.vue";
+import OrdersIndex from "./views/OrdersIndex.vue";
+import OrderSummary from "./views/OrderSummary.vue";
+import Payment from "./views/Payment.vue";
+import RestaurantShow from "./views/RestaurantShow.vue";
+import RestaurantsIndex from "./views/RestaurantsIndex.vue";
+import TablesIndex from "./views/TablesIndex.vue";
 
 Vue.use(Router)
 

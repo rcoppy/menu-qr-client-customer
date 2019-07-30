@@ -52,9 +52,9 @@ import {
   VContainer,
   VSwitch,
   VForm,
-  VTextfield,
+  VTextField,
   VFooter,
-  VButton
+  VBtn
 } from "vuetify/lib";
 import { mapState } from "vuex";
 
@@ -64,9 +64,9 @@ export default {
     VContainer,
     VSwitch,
     VForm,
-    VTextfield,
+    VTextField,
     VFooter,
-    VButton
+    VBtn
   },
   data() {
     return {};
