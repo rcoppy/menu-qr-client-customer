@@ -48,25 +48,25 @@
 // @ is an alias to /src
 //import SignInForm from "@/components/SignInForm.vue";
 
-import {
+/*import {
   VContainer,
   VSwitch,
   VForm,
   VTextField,
   VFooter,
   VBtn
-} from "vuetify/lib";
+} from "vuetify/lib";*/
 import { mapState } from "vuex";
 
 export default {
   name: "Payment",
   components: {
-    VContainer,
+    /*VContainer,
     VSwitch,
     VForm,
     VTextField,
     VFooter,
-    VBtn
+    VBtn*/
   },
   data() {
     return {};

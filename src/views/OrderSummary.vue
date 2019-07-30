@@ -32,15 +32,15 @@
 </template>
 
 <script>
-import { VFooter, VBtn, VContainer, VGrid } from "vuetify/lib";
+//import { VFooter, VBtn, VContainer, VGrid } from "vuetify/lib";
 
 export default {
   name: "OrderSummary",
   components: {
-    VFooter,
+    /*VFooter,
     VBtn,
     VContainer,
-    VGrid
+    VGrid*/
   },
   data() {}
 };

@@ -67,24 +67,24 @@
 </template>
 
 <script>
-import {
+/*import {
   VContainer,
   VFooter,
   VBtn,
   VTextarea,
   VForm,
   VGrid
-} from "vuetify/lib";
+} from "vuetify/lib";*/
 
 export default {
   name: "OrderConfirmation",
   components: {
-    VContainer,
+    /*VContainer,
     VFooter,
     VBtn,
     VTextarea,
     VForm,
-    VGrid
+    VGrid*/
   },
   data() {
     return {};

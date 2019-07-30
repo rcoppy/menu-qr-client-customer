@@ -14,13 +14,13 @@
 // @ is an alias to /src
 //import SignInForm from "@/components/SignInForm.vue";
 
-import { VContainer } from "vuetify/lib";
+//import { VContainer } from "vuetify/lib";
 import { mapState } from "vuex";
 
 export default {
   name: "CartShow",
   components: {
-    VContainer
+    //VContainer
   },
   data() {
     return {};

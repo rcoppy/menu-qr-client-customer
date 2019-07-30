@@ -18,13 +18,14 @@
 //import SignInForm from "@/components/SignInForm.vue";
 
 import { ItemModal } from "@/components/ItemModal.vue";
-import { VContainer } from "vuetify/lib";
+//import { VContainer } from "vuetify/lib";
 import { mapState } from "vuex";
 
 export default {
   name: "RestaurantShow",
   components: {
-    VContainer
+    //VContainer
+    ItemModal
   },
   data() {
     return {};
