@@ -1,43 +1,21 @@
 <template>
-  <div class="feedback-page app-page">
+  <div class="order-confirmation">
     <div class="page-header">
       <h1>Thanks for your order!</h1>
     </div>
 
-    <div class="container mt-4">
+    <v-container class="mt-4">
       <h4>Order Summary</h4>
       <div class="order-summary-list">
-        <div class="order-grid">
-          <!--vuefor-->
-          <span class="order-item">ItemName xQuantity></span>
-          <span class="order-price">ItemCost</span>
-          <!-- -->
-        </div>
+        <v-grid class="order-grid">
+          <div v-for="item in order_items" v-bind:key="item.id">
+            <span class="order-item">ItemName xQuantity></span>
+            <span class="order-price">ItemCost</span>
+          </div>
+        </v-grid>
       </div>
 
-      <span class="scroll-indicator">
-        <i class="material-icons">keyboard_arrow_down</i>
-      </span>
-
-      <div class="order-total-gratuity">
-        <div class="left-cell">
-          <p>
-            Order:
-            <strong>OrderCost</strong>
-          </p>
-          <p>
-            Tip:
-            <strong>OrderGratuity</strong>
-          </p>
-        </div>
-        <i class="arrow-icon material-icons">chevron_right</i>
-        <div class="right-cell">
-          <span>OrderTotalPlusTip</span>
-        </div>
-        <!--<div class="badge-cell order-paid-badge">
-                    <span>Paid!<span>
-        </div>-->
-      </div>
+      <h2>Total cost $203</h2>
 
       <hr />
 
@@ -64,61 +42,57 @@
           </div>
         </div>
 
-        <div class="bmd-form mt-2 mx-2 text-center">
-          <textarea
+        <v-form class="mt-2 mx-2 text-center">
+          <v-textarea
             id="feedback-text"
-            class="feedback-textarea form-control"
+            class="feedback-textarea"
             rows="3"
             placeholder="Write us a note!"
-          ></textarea>
-          <button type="button" class="mt-1 btn-large btn btn-primary">Submit Feedback</button>
-        </div>
+          ></v-textarea>
+          <v-btn large color="primary" class="mt-1">Submit Feedback</v-btn>
+        </v-form>
       </div>
 
-      <div class="page-footer container">
+      <v-footer>
         <hr class="footer-divider" />
 
         <div class="text-center mt-2">
           <p>Did you enjoy your ordering experience?</p>
-          <button type="button" class="btn btn-raised btn-success btn-lg">Recommend Us</button>
-          <button type="button" class="btn btn-primary">Place Another Order</button>
-          <!--<button type="button" id="new-order-button" class="text-center btn btn-primary">Place Another Order</button>-->
+          <v-btn large color="success">Recommend Us</v-btn>
+          <v-btn color="primary">Place Another Order</v-btn>
         </div>
-      </div>
-    </div>
+      </v-footer>
+    </v-container>
   </div>
 </template>
 
 <script>
-// Determines if the passed element is overflowing its bounds,
-// either vertically or horizontally.
-// Will temporarily modify the "overflow" style to detect this
-// if necessary.
-// https://stackoverflow.com/questions/143815/determine-if-an-html-elements-content-overflows
-function checkOverflow(el) {
-  var curOverflow = el.style.overflow;
+import {
+  VContainer,
+  VFooter,
+  VButton,
+  VTextarea,
+  VForm,
+  VGrid
+} from "vuetify/lib";
 
-  if (!curOverflow || curOverflow === "visible") el.style.overflow = "hidden";
-
-  var isOverflowing =
-    el.clientWidth < el.scrollWidth || el.clientHeight < el.scrollHeight;
-
-  el.style.overflow = curOverflow;
-
-  return isOverflowing;
-}
-
-document.addEventListener("DOMContentLoaded", _event => {
-  const list = document.querySelector(".order-summary-list");
-  if (checkOverflow(list.querySelector(".order-grid"))) {
-    console.log("im visible");
-    document.querySelector(".scroll-indicator").classList.toggle("is-visible");
-    list.classList.toggle(".has-overflow");
-  } else {
-    // hr only visible if no overflow (gradient provides boundary when overflow)
-    document
-      .querySelector(".order-summary-divider")
-      .classList.toggle("is-visible");
+export default {
+  name: "OrderConfirmation",
+  components: {
+    VContainer,
+    VFooter,
+    VButton,
+    VTextarea,
+    VForm,
+    VGrid
+  },
+  data() {
+    return {};
+  },
+  methods: {},
+  computed: {},
+  created() {
+    this.$store.dispatch("fetch_order_items");
   }
-});
+};
 </script>

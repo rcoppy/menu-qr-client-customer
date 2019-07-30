@@ -1,29 +1,12 @@
 <template>
-  <div id="payment-page" class="payment-page app-page">
+  <div class="payment-page">
     <div class="header-image"></div>
     <div class="page-header">
       <h1>Almost there!</h1>
     </div>
-    <div class="container mt-4">
-      <h4>Leave an optional gratuity</h4>
-      <div class="gratuity-form mb-4">
-        <span class="gratuity-buttons">
-          <button id="gratuity-decrement" type="button" class="btn btn-secondary bmd-btn-fab">
-            <i class="material-icons">remove</i>
-          </button>
-          <h3 class="gratuity-percentage">10%</h3>
-          <button id="gratuity-increment" type="button" class="btn btn-primary bmd-btn-fab">
-            <i class="material-icons">add</i>
-          </button>
-        </span>
-
-        <h3 class="gratuity-total">
-          $
-          <!--fillin-->
-        </h3>
-      </div>
+    <v-container class="mt-4">
       <h4>Pick a payment method</h4>
-      <form class="payment-method-form">
+      <v-form class="payment-method-form">
         <label class="rad" data-payment-method="apple_pay">
           <input type="radio" name="rad1" value="apple_pay" />
           <i class="fab fa-cc-apple-pay"></i>
@@ -40,29 +23,13 @@
           <input type="radio" name="rad1" value="cash" />
           <i class="fas fa-money-bill-wave"></i>
         </label>
-      </form>
-      <form class="bmd-form-group payment-split-settings">
-        <!-- bmd-collapse-inline pull-xs-right"> -->
-        <div id="split-bill-form" class="switch">
-          <label>
-            <input
-              id="split-bill-checkbox"
-              type="checkbox"
-              for="search"
-              data-toggle="collapse"
-              data-target="#collapse-search"
-              aria-expanded="false"
-              aria-controls="collapse-search"
-            />
-            Split the bill?
-          </label>
-        </div>
-        <span id="collapse-search" class="collapse">
-          <input class="form-control" type="text" id="search" placeholder="Copayer's email" />
-        </span>
-      </form>
-    </div>
-    <div class="page-footer container">
+      </v-form>
+      <v-form class="payment-split-settings">
+        <v-switch v-model="splitBillSwitch" label="Split the bill?"></v-switch>
+        <v-textfield label="Copayer's email"></v-textfield>
+      </v-form>
+    </v-container>
+    <v-footer>
       <hr class="footer-divider" />
       <span class="order-total">
         <h2 class="order-total-text">Total</h2>
@@ -70,31 +37,41 @@
         <h2 class="order-total-amount">$TransactionPrice</h2>
       </span>
       <span class="order-buttons btn-group-lg">
-        <button type="button" class="btn btn-raised btn-secondary">Back</button>
-        <button type="button" class="payment-confirm-button btn btn-raised btn-success">Make Payment</button>
+        <v-btn>Back</v-btn>
+        <v-btn class="payment-confirm-button" color="success">Make Payment</v-btn>
       </span>
-    </div>
+    </v-footer>
   </div>
 </template>
 
 <script>
-// Determines if the passed element is overflowing its bounds,
-// either vertically or horizontally.
-// Will temporarily modify the "overflow" style to detect this
-// if necessary.
-// https://stackoverflow.com/questions/143815/determine-if-an-html-elements-content-overflows
-function checkOverflow(el) {
-  var curOverflow = el.style.overflow;
+// @ is an alias to /src
+//import SignInForm from "@/components/SignInForm.vue";
 
-  if (!curOverflow || curOverflow === "visible") el.style.overflow = "hidden";
+import {
+  VContainer,
+  VSwitch,
+  VForm,
+  VTextfield,
+  VFooter,
+  VButton
+} from "vuetify/lib";
+import { mapState } from "vuex";
 
-  var isOverflowing =
-    el.clientWidth < el.scrollWidth || el.clientHeight < el.scrollHeight;
-
-  el.style.overflow = curOverflow;
-
-  return isOverflowing;
-}
-
-document.addEventListener("DOMContentLoaded", _event => {});
+export default {
+  name: "Payment",
+  components: {
+    VContainer,
+    VSwitch,
+    VForm,
+    VTextfield,
+    VFooter,
+    VButton
+  },
+  data() {
+    return {};
+  },
+  methods: {},
+  computed: {}
+};
 </script>

@@ -1,25 +1,21 @@
 <template>
-  <div id="order-summary-page" class="order-summary app-page">
+  <div class="order-summary">
     <div class="order-title">
       <h1>Your order</h1>
     </div>
-    <div class="order-summary-list order-container">
-      <div class="order-grid">
-        <!--vue-for order items-->
-        <!--<span class="order-row">-->
-        <span class="order-item">ItemName xItemQuantity</span>
-        <span class="order-price">ItemPrice</span>
-        <button type="button" class="order-action btn btn-danger bmd-btn-icon">
-          <i class="material-icons">delete_outline</i>
-        </button>
-        <!--</span>-->
-        <!--end loop-->
-      </div>
-    </div>
-    <span class="scroll-indicator">
-      <i class="material-icons">keyboard_arrow_down</i>
-    </span>
-    <div class="order-footer order-container">
+    <v-container class="order-summary-list">
+      <v-grid class="order-grid">
+        <div v-for="item in items" v-bind:key="item.id">
+          <span class="order-item">ItemName xItemQuantity</span>
+          <span class="order-price">ItemPrice</span>
+          <v-btn class="order-action" icon color="danger">
+            <i class="material-icons">delete_outline</i>
+          </v-btn>
+        </div>
+      </v-grid>
+    </v-container>
+
+    <v-footer>
       <hr class="order-summary-divider" />
       <span class="order-total">
         <h2 class="order-total-text">Total</h2>
@@ -27,54 +23,22 @@
           <!--pop by JS-->
         </h2>
       </span>
-      <span class="order-buttons btn-group-lg">
-        <button type="button" class="btn btn-raised btn-secondary">Back</button>
-        <button type="button" class="btn btn-raised btn-success">Confirm Order</button>
+      <span class="order-buttons">
+        <v-btn large>Back</v-btn>
+        <v-btn large color="success">Confirm Order</v-btn>
       </span>
-    </div>
+    </v-footer>
   </div>
 </template>
 
 <script>
-// Determines if the passed element is overflowing its bounds,
-// either vertically or horizontally.
-// Will temporarily modify the "overflow" style to detect this
-// if necessary.
-// https://stackoverflow.com/questions/143815/determine-if-an-html-elements-content-overflows
-function checkOverflow(el) {
-  var curOverflow = el.style.overflow;
+import { VFooter, VButton, VContainer, VGrid } from "vuetify/lib";
 
-  if (!curOverflow || curOverflow === "visible") el.style.overflow = "hidden";
-
-  var isOverflowing =
-    el.clientWidth < el.scrollWidth || el.clientHeight < el.scrollHeight;
-
-  el.style.overflow = curOverflow;
-
-  return isOverflowing;
-}
-
-document.addEventListener("DOMContentLoaded", _event => {
-  const list = document.querySelector(".order-summary-list");
-  if (checkOverflow(list.querySelector(".order-grid"))) {
-    console.log("im visible");
-    document.querySelector(".scroll-indicator").classList.toggle("is-visible");
-    list.classList.toggle(".has-overflow");
-  } else {
-    // hr only visible if no overflow (gradient provides boundary when overflow)
-    document
-      .querySelector(".order-summary-divider")
-      .classList.toggle("is-visible");
-  }
-
-  // size to fit page
-  const header = document.querySelector(".order-title").offsetHeight;
-  const footer = document.querySelector(".order-footer").offsetHeight;
-  const page = document.querySelector(".order-summary").offsetHeight;
-
-  usedHeight = header + footer;
-
-  list.style.height = `${(page - usedHeight) * 0.9}px`;
-  // console.log((page - usedHeight) * 0.9);
-});
+export default {
+  name: "OrderSummary",
+  components: {
+     VFooter, VButton, VContainer, VGrid 
+  },
+  data() {}
+};
 </script>
