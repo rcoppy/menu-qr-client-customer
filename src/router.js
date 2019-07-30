@@ -6,7 +6,7 @@ import About from './views/About.vue'
 import Login from './components/Login.vue'
 import Secure from './views/Secure.vue'
 import Register from './components/Register.vue'
-import RestaurantsIndex from './views/RestaurantsIndex'
+import { CartShow, OrderConfirmation, OrderShow, OrdersIndex, OrderSummary, Payment, RestaurantShow, RestaurantsIndex, TablesIndex } from "@/components";
 
 Vue.use(Router)
 
@@ -74,7 +74,7 @@ let router = new Router({
     {
       path: '/confirmation',
       name: 'confirmation',
-      component: Confirmation
+      component: OrderConfirmation
     },
     {
       path: '/orders',
@@ -91,6 +91,11 @@ let router = new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: '/summary',
+      name: 'summary',
+      component: OrderSummary
     }
   ]
 })
